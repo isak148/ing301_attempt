@@ -105,8 +105,6 @@ def largest_pair(par_1, par_2):
     else:
         return None
     _
-    return NotImplemented  # TODO: Du må erstatte denne linjen
-
 
 def find_most_frequent(frequency_table):
     """
@@ -120,7 +118,7 @@ def find_most_frequent(frequency_table):
       if frequency > highest_frequency:
           most_frequent_word = word
           highest_frequency = frequency
-          
+
     # Tips: se på "dict.items()" funksjonen (https://docs.python.org/3/library/stdtypes.html#dict.items)
     # og kanskje du kan gjenbruke den "largest_pair" metoden som du nettopp har laget
     return most_frequent_word  # TODO: Du må erstatte denne linjen
