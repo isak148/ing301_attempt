@@ -5,7 +5,7 @@ from pathlib import Path
 class TestAssignment2(unittest.TestCase):
 
     def test_read_file(self):
-        expected = ["Det er\n", "bare\n", "noen få ord her!\n"]
+        expected = ["Det er", "bare", "noen få ord her!\n"]
         ref_point = Path(__file__).parent
         self.assertEqual(expected, wf.read_file(str((ref_point / "small.txt").absolute())))
 

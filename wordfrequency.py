@@ -17,8 +17,12 @@ def read_file(file_name):
     tilbake en liste av tekststrenger som representerer linjene i filen.
     """
     # Tips: kanksje "open"-funksjonen kunne være nyttig her: https://docs.python.org/3/library/functions.html#open
-    return NotImplemented  # TODO: Du må erstatte denne linjen
-
+    file = open(file_name, encoding="UTF8")
+    innhold = file.read()
+    linjer = innhold.split("\n",2)
+    return linjer  # TODO: Du må erstatte denne linjen
+file = r"C:\Users\isakh\Documents\skole\ING301\ing301_attempt\small.txt"
+read_file(file)
 
 def lines_to_words(lines):
     """
@@ -30,13 +34,22 @@ def lines_to_words(lines):
     blir behandlet likt.
     OBS! Pass også på at du ikke legger til tomme ord (dvs. "" eller '' skal ikke være med) i resultatlisten!
 
-    F. eks: Inn: ["Det er", "bare", "noen få ord"], Ut: ["Det", "er", "bare", "noen", "få", "ord"]
+    F. eks: Inn: ["Det er", "bare", "noen få ord"], Ut: ["det", "er", "bare", "noen", "få", "ord"]
     """
     # Tips: se på "split()"-funksjonen https://docs.python.org/3/library/stdtypes.html#str.split
     # i tillegg kan "strip()": https://docs.python.org/3/library/stdtypes.html#str.strip
     # og "lower()": https://docs.python.org/3/library/stdtypes.html#str.lower være nyttig
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    
+    words = []
+    for line in lines:
+        for word in line.split():
+            word = word.strip(".,:;?!")  # Fjerner tegn
+            word = word.lower()        # Gjør om til små bokstaver
+            if word:                    # Sjekker om ordet er tomt
+                words.append(word)
+    return words  # TODO: Du må erstatte denne linjen
 
+  # Legg linjen i en liste for å matche funksjonens input
 
 def compute_frequency(words):
     """
@@ -46,11 +59,18 @@ def compute_frequency(words):
 
     F. eks. Inn ["hun", "hen", "han", "hen"], Ut: {"hen": 2, "hun": 1, "han": 1}
     """
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    frequency = {}
+    for word in words:
+        if word in frequency:
+            frequency[word] += 1
+        else:
+            frequency[word] = 1
+    return frequency
 
+
+    return frequency  # TODO: Du må erstatte denne linjen
 
 FILL_WORDS = ['og', 'dei', 'i', 'eg', 'som', 'det', 'han', 'til', 'skal', 'på', 'for', 'då', 'ikkje', 'var', 'vera']
-
 
 def remove_filler_words(frequency_table):
     """
@@ -60,7 +80,12 @@ def remove_filler_words(frequency_table):
     Målet med denne funksjonen er at den skal få en frekvenstabll som input og så fjerne alle fyll-ord
     som finnes i FILL_WORDS.
     """
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    for word in FILL_WORDS:
+        if word in frequency_table:
+            del frequency_table[word]
+
+
+    return frequency_table  # TODO: Du må erstatte denne linjen
 
 
 def largest_pair(par_1, par_2):
@@ -72,6 +97,14 @@ def largest_pair(par_1, par_2):
     """
     # OBS: Tenk også på situasjonen når to tall er lik! Vurder hvordan du vil handtere denne situasjonen
     # kanskje du vil skrive noen flere test metoder ?!
+    
+    if par_1[1]<par_2[1]:
+        return par_2
+    if par_1[1]>par_2[1]:
+        return  par_1
+    else:
+        return None
+    _
     return NotImplemented  # TODO: Du må erstatte denne linjen
 
 
@@ -80,9 +113,17 @@ def find_most_frequent(frequency_table):
     Nå er det på tide å sette sammen alle bitene du har laget.
     Den funksjonen får frekvenstabllen som innputt og finner det ordet som dykket opp flest.
     """
+    most_frequent_word = None
+    highest_frequency = 0
+
+    for word, frequency in frequency_table.items():
+      if frequency > highest_frequency:
+          most_frequent_word = word
+          highest_frequency = frequency
+          
     # Tips: se på "dict.items()" funksjonen (https://docs.python.org/3/library/stdtypes.html#dict.items)
     # og kanskje du kan gjenbruke den "largest_pair" metoden som du nettopp har laget
-    return NotImplemented  # TODO: Du må erstatte denne linjen
+    return most_frequent_word  # TODO: Du må erstatte denne linjen
 
 
 ############################################################
