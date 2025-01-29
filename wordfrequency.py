@@ -21,8 +21,7 @@ def read_file(file_name):
     innhold = file.read()
     linjer = innhold.split("\n",2)
     return linjer  # TODO: Du må erstatte denne linjen
-file = r"C:\Users\isakh\Documents\skole\ING301\ing301_attempt\small.txt"
-read_file(file)
+
 
 def lines_to_words(lines):
     """
